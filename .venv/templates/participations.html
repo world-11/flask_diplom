@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Участие в соревнованиях</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Участие в соревнованиях</h1>
+        <a href="/" class="btn btn-primary">ID спортсмена</a>
+        <a href="/competitions" class="btn btn-primary">ID соревнования</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Спортсмен</th>
+                    <th>Соревнование</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for participation in participations %}
+                <tr>
+                    <td>{{ participation[0] }}</td>
+                    <td>{{ participation[1] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form action="/add_participation" method="post">
+            <div class="form-group">
+                <label for="athlete_id">ID Спортсмена</label>
+                <input type="number" class="form-control" id="athlete_id" name="athlete_id" required>
+            </div>
+            <div class="form-group">
+                <label for="competition_id">ID соревнования</label>
+                <input type="number" class="form-control" id="competition_id" name="competition_id" required>
+            </div>
+            <button type="submit" class="btn btn-success">Добавить участника</button>
+        </form>
+    </div>
+</body>
+</html>

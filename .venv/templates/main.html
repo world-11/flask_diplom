@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Спортсмены</title>
+</head>
+<body>
+    <h1>Спортсмены</h1>
+    <form action="/add_athlete" method="post">
+        <input type="text" name="name" placeholder="Athlete Name" required>
+        <input type="number" name="age" placeholder="Age" required>
+        <button type="submit">Add Athlete</button>
+    </form>
+    <ul>
+        {% for athlete in athletes %}
+            <li>
+                {{ athlete.name }} ({{ athlete.age }})
+                <form action="/edit_athlete/{{ athlete.id }}" method="post" style="display:inline;">
+                    <input type="text" name="name" placeholder="New Name" required>
+                    <input type="number" name="age" placeholder="New Age" required>
+                    <button type="submit">Редактировать</button>
+                </form>
+                <a href="/delete_athlete/{{ athlete.id }}">Удалить</a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/competitions">Соревнования</a>
+    <a href="/participation">Спортсмены</a>
+</body>
+</html>
